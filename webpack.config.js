@@ -247,10 +247,10 @@ module.exports = (env) => {
         }
       },
       proxy: {
-        '/': {
-          target: 'http://123.57.194.222:9090/',
+        '/api': {
+          target: 'http://123.57.194.222:9090',
+          pathRewrite: { '^/api': '' },
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
     }

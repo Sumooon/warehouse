@@ -26,10 +26,7 @@ const state = reactive({
 })
 const getInfo = (link: string) => {
   getChapter(link).then((res) => {
-    Object.assign(state, {
-      ...res,
-      content: res.content.replace(/\n/g, '<br/>')
-    })
+    Object.assign(state, res)
   })
 }
 onMounted(() => getInfo(link as string))
