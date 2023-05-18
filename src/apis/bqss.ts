@@ -1,6 +1,6 @@
 import Request from '@/utils/request'
 const client = new Request({
-  baseURL: '/bqj'
+  baseURL: '/bqss'
 })
 export interface IList {
   author: string

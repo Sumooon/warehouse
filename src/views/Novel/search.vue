@@ -11,7 +11,7 @@
       :key="index"
       :title="item.name"
       :value="item.author"
-      :label="`最新章节: ${item.chapter} 更新时间: ${item.time}`"
+      :label="renderLabel(item)"
       @click="handleSelect(item)"
     />
   </List>
@@ -20,13 +20,20 @@
 <script setup lang="ts">
 import { Search, List, Cell } from 'vant'
 import { reactive } from 'vue'
-import { search, IList } from '@/apis/bqj'
+import { search, IList } from '@/apis/bqss'
 import router from '@/router'
 const state = reactive({
   loading: false,
   search: '',
   data: [] as IList[]
 })
+const renderLabel = (item: IList) => {
+  return item.chapter
+    ? `最新章节: ${item.chapter}`
+    : '' + item.time
+    ? ` 更新时间: ${item.time}`
+    : ''
+}
 const handleSearch = (val: string) => {
   state.loading = true
   search(val).then((res) => {

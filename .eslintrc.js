@@ -12,7 +12,7 @@ module.exports = {
     'plugin:prettier/recommended' // 添加 prettier 插件
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2020
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -30,6 +30,7 @@ module.exports = {
     'standard/no-callback-literal': 'off',
     'vue/no-deprecated-slot-attribute': 'off',
     'vue/multi-word-component-names': 'off',
-    'vue/no-reserved-component-names': 'off'
+    'vue/no-reserved-component-names': 'off',
+    'no-irregular-whitespace': 'off'
   }
 }

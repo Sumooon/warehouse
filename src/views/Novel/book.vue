@@ -16,7 +16,7 @@
 import { reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { NavBar } from 'vant'
-import { getBook } from '@/apis/bqj'
+import { getBook } from '@/apis/bqss'
 const router = useRouter()
 const route = useRoute()
 const { title, url } = route.query
@@ -29,8 +29,7 @@ const state = reactive({
 })
 onMounted(() => {
   getBook(url as string).then((res) => {
-    console.log('res ', res)
-    state.data = res && res.length ? res.reverse() : []
+    state.data = res || []
   })
 })
 const handleClick = (link: string) => {

@@ -229,7 +229,7 @@ module.exports = (env) => {
       minimizer: [
         // 设置打包不开启多线程
         new TerserPlugin({
-          parallel: false,
+          parallel: !env.WEBPACK_BUILD,
           extractComments: false
         })
       ]

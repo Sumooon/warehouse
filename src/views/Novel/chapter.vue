@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getChapter } from '@/apis/bqj'
+import { getChapter } from '@/apis/bqss'
 import { NavBar } from 'vant'
 
 const router = useRouter()
@@ -26,10 +26,9 @@ const state = reactive({
 })
 const getInfo = (link: string) => {
   getChapter(link).then((res) => {
-    Object.assign(state, res)
-    document.querySelector('#app')?.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+    Object.assign(state, {
+      ...res,
+      content: res.content.replace(/\n|　　/g, '<br/>')
     })
   })
 }
@@ -48,6 +47,10 @@ const handleClick = (type: number) => {
   if (type) {
     path = state.next
   }
+  document.querySelector('#app')?.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
   getInfo(path)
 }
 </script>
@@ -64,6 +67,7 @@ const handleClick = (type: number) => {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
   div {
     color: #1989fa;
   }
