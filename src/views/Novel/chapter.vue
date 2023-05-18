@@ -28,7 +28,7 @@ const getInfo = (link: string) => {
   getChapter(link).then((res) => {
     Object.assign(state, {
       ...res,
-      content: res.content.replace(/\n|　　/g, '<br/>')
+      content: res.content.replace(/\n/g, '<br/>')
     })
   })
 }
