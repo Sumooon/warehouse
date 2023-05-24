@@ -53,6 +53,11 @@ module.exports = (env) => {
         '@': resolve('src')
       }
     },
+    cache: env.WEBPACK_BUILD
+      ? false
+      : {
+          type: 'filesystem' // 将 cache 类型设置为内存或者文件系统。memory 选项很简单，它告诉 webpack 在内存中存储缓存，不允许额外的配置 默认 memory
+        },
     externals: {
       BMap: 'BMap'
     },
@@ -115,6 +120,8 @@ module.exports = (env) => {
           use: {
             loader: 'babel-loader',
             options: {
+              cacheDirectory: !env.WEBPACK_BUILD, // 是否开启babel编译缓存 默认值为 false
+              cacheCompression: env.WEBPACK_BUILD, // 缓存文件是否压缩 默认值为 true
               presets: [
                 [
                   '@babel/preset-env',
@@ -178,9 +185,9 @@ module.exports = (env) => {
       ]
     },
     optimization: {
-      splitChunks: {
-        chunks: 'all'
-      },
+      // splitChunks: {
+      //   chunks: 'all'
+      // },
       /**
        * 以下为细化拆分
        * 好处：没有大体积的文件
@@ -225,7 +232,7 @@ module.exports = (env) => {
       //     }
       //   }
       // },
-      minimize: true,
+      minimize: env.WEBPACK_BUILD,
       minimizer: [
         // 设置打包不开启多线程
         new TerserPlugin({
@@ -248,9 +255,10 @@ module.exports = (env) => {
       },
       proxy: {
         '/api': {
-          target: 'http://123.57.194.222:9090',
+          // target: 'http://123.57.194.222:9090',
+          target: 'http://localhost:9090',
           pathRewrite: { '^/api': '' },
-          changeOrigin: true,
+          changeOrigin: true
         }
       }
     }

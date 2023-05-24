@@ -2,6 +2,9 @@ import Request from '@/utils/request'
 const client = new Request({
   baseURL: '/api/bqss'
 })
+export const updateBaseUrl = (url: string) => {
+  client.updateBaseUrl(url)
+}
 export interface IList {
   author: string
   chapter: string

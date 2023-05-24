@@ -40,6 +40,10 @@ class Request {
     })
   }
 
+  updateBaseUrl(url: string) {
+    this.instance.defaults.baseURL = url
+  }
+
   request<T = any, R = AxiosResponse<T>>(config: AxiosRequestConfig) {
     return this.instance.request<T, R>(config)
   }
