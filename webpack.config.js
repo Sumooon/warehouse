@@ -255,8 +255,8 @@ module.exports = (env) => {
       },
       proxy: {
         '/api': {
-          // target: 'http://123.57.194.222:9090',
-          target: 'http://localhost:9090',
+          target: 'http://123.57.194.222:9090',
+          // target: 'http://localhost:9090',
           pathRewrite: { '^/api': '' },
           changeOrigin: true
         }

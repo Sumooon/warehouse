@@ -36,7 +36,7 @@ import { reactive } from 'vue'
 import { search, IList, updateBaseUrl } from '@/apis/bqss'
 import router from '@/router'
 const state = reactive({
-  source: '//api/bqj',
+  source: '/api/bqj',
   // sourceOpt: [
   //   {
   //     text: 'biqusoso',
