@@ -1,6 +1,6 @@
 <template>
   <Row class="toll-bar">
-    <Col span="6">
+    <!-- <Col span="6">
       <DropdownMenu>
         <DropdownItem
           v-model="state.source"
@@ -8,8 +8,8 @@
           @change="handleMenuItemChange"
         />
       </DropdownMenu>
-    </Col>
-    <Col span="18">
+    </Col> -->
+    <Col span="24">
       <Search
         v-model="state.search"
         placeholder="请输入书名/作者"
@@ -36,17 +36,17 @@ import { reactive } from 'vue'
 import { search, IList, updateBaseUrl } from '@/apis/bqss'
 import router from '@/router'
 const state = reactive({
-  source: '/api/bqss',
-  sourceOpt: [
-    {
-      text: 'biqusoso',
-      value: '/api/bqss'
-    },
-    {
-      text: 'iqubige',
-      value: '/api/bqj'
-    }
-  ],
+  source: '//api/bqj',
+  // sourceOpt: [
+  //   {
+  //     text: 'biqusoso',
+  //     value: '/api/bqss'
+  //   },
+  //   {
+  //     text: 'iqubige',
+  //     value: '/api/bqj'
+  //   }
+  // ],
   loading: false,
   search: '',
   data: [] as IList[]
@@ -56,10 +56,10 @@ const renderLabel = (item: IList) => {
     (item.chapter ? `最新章节: ${item.chapter}` : '') + (item.time ? ` 更新时间: ${item.time}` : '')
   )
 }
-const handleMenuItemChange = (val: string) => {
-  updateBaseUrl(val)
-  state.search && handleSearch(state.search)
-}
+// const handleMenuItemChange = (val: string) => {
+//   updateBaseUrl(val)
+//   state.search && handleSearch(state.search)
+// }
 const handleSearch = (val: string) => {
   state.loading = true
   state.data = []
